@@ -23,7 +23,8 @@ set backupdir=~/.cache/vim
 
 call plug#begin()
     " Apperance
-    Plug 'dracula/vim'
+    " Plug 'dracula/vim'
+    Plug 'sainnhe/sonokai'
     Plug 'vim-airline/vim-airline'
     Plug 'ryanoasis/vim-devicons'
     Plug 'elvessousa/sobrio'
@@ -78,7 +79,11 @@ if (has("termguicolors"))
 endif
 syntax enable
 
-colorscheme dracula
+let g:sonokai_style='andromeda'
+let g:sonokai_enable_italic=1
+
+" colorscheme dracula
+colorscheme sonokai
 
 " airline
 let g:airline_theme='sobrio'
