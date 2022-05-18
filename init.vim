@@ -25,9 +25,10 @@ call plug#begin()
     " Apperance
     " Plug 'dracula/vim'
     Plug 'sainnhe/sonokai'
-    Plug 'vim-airline/vim-airline'
+    " Plug 'vim-airline/vim-airline'
+    Plug 'itchyny/lightline.vim'
     Plug 'ryanoasis/vim-devicons'
-    Plug 'elvessousa/sobrio'
+    " Plug 'elvessousa/sobrio'
 
     " Utilities
     Plug 'ap/vim-css-color'
@@ -85,10 +86,13 @@ let g:sonokai_enable_italic=1
 " colorscheme dracula
 colorscheme sonokai
 
+let g:lightline = {}
+let g:lightline.colorscheme = 'sonokai'
+
 " airline
-let g:airline_theme='sobrio'
-let g:airline_powerline_fonts=1
-let g:airline#extensions#tabline#enabled=1
+" let g:airline_theme='sobrio'
+" let g:airline_powerline_fonts=1
+" let g:airline#extensions#tabline#enabled=1
 
 " File browser
 let NERDTreeShowHidden=1
