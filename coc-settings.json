@@ -54,6 +54,12 @@
                     }
                 }
             }
+        },
+        "rust": {
+            "command": "rust-analyzer",
+            "filetypes": ["rust", "rs"],
+            "rootPatterns": ["Cargo.toml"]
         }
+
     }
 }
