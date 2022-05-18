@@ -29,7 +29,6 @@ call plug#begin()
     Plug 'elvessousa/sobrio'
 
     " Utilities
-    Plug 'jiangmiao/auto-pairs'
     Plug 'ap/vim-css-color'
     Plug 'preservim/nerdtree'
     
