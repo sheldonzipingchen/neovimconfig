@@ -33,6 +33,8 @@ call plug#begin()
     " Utilities
     Plug 'ap/vim-css-color'
     Plug 'preservim/nerdtree'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'preservim/tagbar'
     
     " Completion / linters / formatters
     Plug 'plasticboy/vim-markdown'
@@ -140,3 +142,40 @@ let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_frontmatter=1
 let g:vim_markdown_conceal=0
 let g:vim_markdown_fenced_languages=['tsx=typescriptreact']
+
+" ========================================================
+" ctrlp 配置
+" ========================================================
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+" ========================================================
+" tagbar 配置
+" ========================================================
+nmap <leader>t  :TagbarToggle<CR>
+let g:tagbar_type_go = {
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
