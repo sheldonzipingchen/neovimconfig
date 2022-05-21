@@ -25,6 +25,10 @@ call plug#begin()
     " Apperance
     " Plug 'dracula/vim'
     Plug 'sainnhe/sonokai'
+
+    Plug 'tjdevries/colorbuddy.nvim'
+    Plug 'lalitmee/cobalt2.nvim'
+
     " Plug 'vim-airline/vim-airline'
     Plug 'itchyny/lightline.vim'
     Plug 'ryanoasis/vim-devicons'
@@ -86,7 +90,8 @@ let g:sonokai_style='andromeda'
 let g:sonokai_enable_italic=1
 
 " colorscheme dracula
-colorscheme sonokai
+" colorscheme sonokai
+colorscheme cobalt2
 
 let g:lightline = {}
 let g:lightline.colorscheme = 'sonokai'
