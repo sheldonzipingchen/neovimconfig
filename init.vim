@@ -47,6 +47,9 @@ call plug#begin()
     " Golang
     Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
     
+    " Rust
+    Plug 'rust-lang/rust.vim'
+    
     " Git
     Plug 'airblade/vim-gitgutter'
 
@@ -184,3 +187,8 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+
+" ========================================================
+" Rust 配置
+" ========================================================
+let g:rust_clip_command='pbcopy'
