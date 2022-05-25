@@ -39,6 +39,8 @@ call plug#begin()
     Plug 'preservim/nerdtree'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'preservim/tagbar'
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
     
     " Completion / linters / formatters
     Plug 'plasticboy/vim-markdown'
@@ -52,6 +54,9 @@ call plug#begin()
     
     " Git
     Plug 'airblade/vim-gitgutter'
+
+    " Latex
+    Plug 'lervag/vimtex'
 
 call plug#end()
 
@@ -192,3 +197,45 @@ let g:tagbar_type_go = {
 " Rust 配置
 " ========================================================
 let g:rust_clip_command='pbcopy'
+
+" ========================================================
+" Latex 配置
+" ========================================================
+let g:tex_flavor='latex'
+let g:vimtex_quickfix_mode=0
+
+let g:vimtex_view_general_viewer='/Applications/Skim.app/Contents/SharedSupport/Displayline'
+let g:vimtex_view_general_options='-r @line @pdf @tex'
+
+function! UpdateSkim(status)
+    if !a:status | return | endif
+
+    let l:out=b:vimtex.out()
+    let l:tex=expand('%:p')
+    let l:cmd=[g:vimtex_view_general_viewer, '-r']
+
+    if !empty(system('pgrep Skim'))
+        call extend(l:cmd, ['-g'])
+    endif
+
+    if has('nvim')
+        call jobstart(l:cmd + [line('.'), l:out, l:tex])
+    elseif has('job')
+        call job_start(l:cmd + [line('.'), l:out, l:tex])
+    else
+        call system(join(l:cmd + [line('.'), shellescape(l:out), shellescape(l:tex)], ' '))
+    endif
+
+endfunction
+
+let g:vimtex_toc_config = {
+\ 'name' : 'TOC',
+\ 'layers' : ['content', 'todo', 'include'],
+\ 'split_width' : 25,
+\ 'todo_sorted' : 0,
+\ 'show_help' : 1,
+\ 'show_numbers' : 1,
+\}
+
+
+
