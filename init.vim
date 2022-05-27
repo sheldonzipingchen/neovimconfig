@@ -216,6 +216,7 @@ let g:vimtex_quickfix_mode=0
 
 let g:vimtex_view_general_viewer='/Applications/Skim.app/Contents/SharedSupport/Displayline'
 let g:vimtex_view_general_options='-r @line @pdf @tex'
+let g:vimtex_compiler_callback_hooks = ['UpdateSkim']
 
 function! UpdateSkim(status)
     if !a:status | return | endif
