@@ -202,6 +202,16 @@ let g:rust_clip_command='pbcopy'
 " Latex 配置
 " ========================================================
 let g:tex_flavor='latex'
+let g:vimtex_compiler_latexmk={
+            \ 'executable' : 'latexmk',
+            \ 'options' : [ 
+                \   '-xelatex',
+                \   '-file-line-error',
+                \   '-synctex=1',
+                \   '-interaction=nonstopmode',
+                \ ],
+                \}
+
 let g:vimtex_quickfix_mode=0
 
 let g:vimtex_view_general_viewer='/Applications/Skim.app/Contents/SharedSupport/Displayline'
