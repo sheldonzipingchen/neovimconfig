@@ -38,6 +38,8 @@ call plug#begin()
     Plug 'ap/vim-css-color'
     Plug 'preservim/nerdtree'
     Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'romgrk/barbar.nvim'
     Plug 'preservim/tagbar'
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
