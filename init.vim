@@ -23,7 +23,7 @@ set backupdir=~/.cache/vim
 
 call plug#begin()
     " Apperance
-    " Plug 'dracula/vim'
+    Plug 'dracula/vim'
     Plug 'sainnhe/sonokai'
 
     Plug 'tjdevries/colorbuddy.nvim'
@@ -99,9 +99,9 @@ syntax enable
 let g:sonokai_style='andromeda'
 let g:sonokai_enable_italic=1
 
-" colorscheme dracula
-" colorscheme sonokai
-colorscheme cobalt2
+"colorscheme dracula
+colorscheme sonokai
+" colorscheme cobalt2
 
 let g:lightline = {}
 let g:lightline.colorscheme = 'sonokai'
@@ -205,6 +205,9 @@ let g:rustfmt_autosave=1
 " Latex 配置
 " ========================================================
 let g:tex_flavor='latex'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:text_conceal='abdmg'
 let g:vimtex_compiler_latexmk={
             \ 'executable' : 'latexmk',
             \ 'options' : [ 
@@ -219,37 +222,41 @@ let g:vimtex_quickfix_mode=0
 
 let g:vimtex_view_general_viewer='/Applications/Skim.app/Contents/SharedSupport/Displayline'
 let g:vimtex_view_general_options='-r @line @pdf @tex'
-let g:vimtex_compiler_callback_hooks = ['UpdateSkim']
 
-function! UpdateSkim(status)
-    if !a:status | return | endif
+augroup vimtex_mac
+    autocmd!
+    autocmd User VimtexEventCompileSuccess call UpdateSkim()
+augroup END
 
-    let l:out=b:vimtex.out()
-    let l:tex=expand('%:p')
-    let l:cmd=[g:vimtex_view_general_viewer, '-r']
+function! UpdateSkim() abort
+    let l:out = b:vimtex.out()
+    let l:src_file_path = expand('%:p')
+    let l:cmd = [g:vimtex_view_general_viewer, '-r']
 
     if !empty(system('pgrep Skim'))
         call extend(l:cmd, ['-g'])
     endif
 
-    if has('nvim')
-        call jobstart(l:cmd + [line('.'), l:out, l:tex])
-    elseif has('job')
-        call job_start(l:cmd + [line('.'), l:out, l:tex])
-    else
-        call system(join(l:cmd + [line('.'), shellescape(l:out), shellescape(l:tex)], ' '))
-    endif
-
+    call jobstart(l:cmd + [line('.'), l:out, l:src_file_path])
 endfunction
 
+augroup vimtex_mac
+    autocmd!
+    autocmd FileType tex call SetServerName()
+augroup END
+
+function! SetServerName()
+    call system('echo ' . v:servername . ' > /tmp/curvimserver')
+endfunction
+
+" TOC settings
 let g:vimtex_toc_config = {
-\ 'name' : 'TOC',
-\ 'layers' : ['content', 'todo', 'include'],
-\ 'split_width' : 25,
-\ 'todo_sorted' : 0,
-\ 'show_help' : 1,
-\ 'show_numbers' : 1,
-\}
-
-
-
+      \ 'name' : 'TOC',
+      \ 'layers' : ['content', 'todo', 'include'],
+      \ 'resize' : 1,
+      \ 'split_width' : 50,
+      \ 'todo_sorted' : 0,
+      \ 'show_help' : 1,
+      \ 'show_numbers' : 1,
+      \ 'mode' : 2,
+      \}
