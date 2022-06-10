@@ -218,28 +218,22 @@ let g:vimtex_quickfix_mode=0
 
 let g:vimtex_view_general_viewer='/Applications/Skim.app/Contents/SharedSupport/Displayline'
 let g:vimtex_view_general_options='-r @line @pdf @tex'
-let g:vimtex_view_general_options_latexmk='-reuse-instance'
-let g:vimtex_compiler_callback_hooks = ['UpdateSkim']
 
-function! UpdateSkim(status)
-    if !a:status | return | endif
+augroup vimtex_mac
+    autocmd!
+    autocmd User VimtexEventCompileSuccess call UpdateSkim()
+augroup END
 
-    let l:out=b:vimtex.out()
-    let l:tex=expand('%:p')
-    let l:cmd=[g:vimtex_view_general_viewer, '-r']
+function! UpdateSkim() abort
+    let l:out = b:vimtex.out()
+    let l:src_file_path = expand('%:p')
+    let l:cmd = [g:vimtex_view_general_viewer, '-r']
 
     if !empty(system('pgrep Skim'))
         call extend(l:cmd, ['-g'])
     endif
 
-    if has('nvim')
-        call jobstart(l:cmd + [line('.'), l:out, l:tex])
-    elseif has('job')
-        call job_start(l:cmd + [line('.'), l:out, l:tex])
-    else
-        call system(join(l:cmd + [line('.'), shellescape(l:out), shellescape(l:tex)], ' '))
-    endif
-
+    call jobstart(l:cmd + [line('.'), l:out, l:src_file_path])
 endfunction
 
 let g:vimtex_toc_config = {
