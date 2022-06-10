@@ -23,7 +23,7 @@ set backupdir=~/.cache/vim
 
 call plug#begin()
     " Apperance
-    " Plug 'dracula/vim'
+    Plug 'dracula/vim'
     Plug 'sainnhe/sonokai'
 
     Plug 'tjdevries/colorbuddy.nvim'
@@ -99,9 +99,9 @@ syntax enable
 let g:sonokai_style='andromeda'
 let g:sonokai_enable_italic=1
 
-" colorscheme dracula
-" colorscheme sonokai
-colorscheme cobalt2
+"colorscheme dracula
+colorscheme sonokai
+" colorscheme cobalt2
 
 let g:lightline = {}
 let g:lightline.colorscheme = 'sonokai'
@@ -204,6 +204,9 @@ let g:rust_clip_command='pbcopy'
 " Latex 配置
 " ========================================================
 let g:tex_flavor='latex'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:text_conceal='abdmg'
 let g:vimtex_compiler_latexmk={
             \ 'executable' : 'latexmk',
             \ 'options' : [ 
