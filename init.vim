@@ -199,6 +199,7 @@ let g:tagbar_type_go = {
 " Rust 配置
 " ========================================================
 let g:rust_clip_command='pbcopy'
+let g:rustfmt_autosave=1
 
 " ========================================================
 " Latex 配置
