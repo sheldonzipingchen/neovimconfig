@@ -236,14 +236,23 @@ function! UpdateSkim() abort
     call jobstart(l:cmd + [line('.'), l:out, l:src_file_path])
 endfunction
 
+augroup vimtex_mac
+    autocmd!
+    autocmd FileType tex call SetServerName()
+augroup END
+
+function! SetServerName()
+    call system('echo ' . v:servername . ' > /tmp/curvimserver')
+endfunction
+
+" TOC settings
 let g:vimtex_toc_config = {
-\ 'name' : 'TOC',
-\ 'layers' : ['content', 'todo', 'include'],
-\ 'split_width' : 25,
-\ 'todo_sorted' : 0,
-\ 'show_help' : 1,
-\ 'show_numbers' : 1,
-\}
-
-
-
+      \ 'name' : 'TOC',
+      \ 'layers' : ['content', 'todo', 'include'],
+      \ 'resize' : 1,
+      \ 'split_width' : 50,
+      \ 'todo_sorted' : 0,
+      \ 'show_help' : 1,
+      \ 'show_numbers' : 1,
+      \ 'mode' : 2,
+      \}
