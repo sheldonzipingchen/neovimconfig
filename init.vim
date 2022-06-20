@@ -43,6 +43,7 @@ call plug#begin()
     Plug 'preservim/tagbar'
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
+    Plug 'windwp/nvim-autopairs'
     
     " Completion / linters / formatters
     Plug 'plasticboy/vim-markdown'
@@ -194,6 +195,13 @@ let g:tagbar_type_go = {
     \ 'ctagsbin'  : 'gotags',
     \ 'ctagsargs' : '-sort -silent'
 \ }
+
+" ========================================================
+" nvim-autopairs 配置
+" ========================================================
+lua << EOF
+require("nvim-autopairs").setup {}
+EOF
 
 " ========================================================
 " Rust 配置
