@@ -46,6 +46,8 @@ call plug#begin()
     Plug 'windwp/nvim-autopairs'
     
     " Completion / linters / formatters
+    Plug 'junegunn/limelight.vim'
+    Plug 'junegunn/goyo.vim'
     Plug 'plasticboy/vim-markdown'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
    
@@ -158,6 +160,41 @@ let g:vim_markdown_folding_disabled=1
 let g:vim_markdown_frontmatter=1
 let g:vim_markdown_conceal=0
 let g:vim_markdown_fenced_languages=['tsx=typescriptreact']
+
+" UltiSnips 配置
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+" goyo 与 limelight 配置
+
+" Color name (:help cterm-colors) or ANSI code
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+
+" Color name (:help gui-colors) or RGB color
+let g:limelight_conceal_guifg = 'DarkGray'
+let g:limelight_conceal_guifg = '#777777'
+
+" Default: 0.5
+let g:limelight_default_coefficient = 0.7
+
+" Number of preceding/following paragraphs to include (default: 0)
+let g:limelight_paragraph_span = 1
+
+" Beginning/end of paragraph
+"   When there's no empty line between the paragraphs
+"   and each paragraph starts with indentation
+let g:limelight_bop = '^\s'
+let g:limelight_eop = '\ze\n^\s'
+
+" Highlighting priority (default: 10)
+"   Set it to -1 not to overrule hlsearch
+let g:limelight_priority = -1
+
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
 
 " ========================================================
 " ctrlp 配置
