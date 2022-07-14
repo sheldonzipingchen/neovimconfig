@@ -200,6 +200,8 @@ autocmd! User GoyoLeave Limelight!
 " ctrlp 配置
 " ========================================================
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_map = '<c-t>'
+let g:ctrlp_cmd = 'CtrlP'
 
 " ========================================================
 " tagbar 配置
