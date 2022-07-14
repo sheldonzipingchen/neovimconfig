@@ -16,7 +16,6 @@ filetype plugin indent on
 filetype plugin on
 syntax on
 set clipboard=unnamedplus
-set cursorline
 set ttyfast
 set noswapfile
 set backupdir=~/.cache/vim
