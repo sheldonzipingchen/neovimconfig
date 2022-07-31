@@ -62,6 +62,8 @@ call plug#begin()
     " Latex
     Plug 'lervag/vimtex'
 
+    " beancount
+    Plug 'nathangrigg/vim-beancount'
 call plug#end()
 
 au BufRead,BufNewFile *.go set expandtab
